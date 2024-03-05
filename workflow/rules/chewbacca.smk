@@ -23,8 +23,8 @@ rule chewbacca_allele_call:
     log:
         "logs/chewbacca/allele_call/{taxa_label}.log",
     shell:
-        "chewBBACA.py AlleleCall --input-files {input.assembly_file} --schema-directory {input.schema_dir}"
-        " --output-directory {params.out_dir} --cpu {threads} > {log} 2>&1"
+        "(rm -rf {params.out_dir} && chewBBACA.py AlleleCall --input-files {input.assembly_file} --schema-directory {input.schema_dir}"
+        " --output-directory {params.out_dir} --cpu {threads}) > {log} 2>&1"
 
 
 rule chewbacca_remove_genes:
