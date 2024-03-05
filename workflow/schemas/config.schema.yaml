@@ -1,1 +1,53 @@
-# schema for the config
+"$schema": http://json-schema.org/draft-06/schema#
+"$ref": "#/definitions/cgMLSTOutbreakDetection"
+definitions:
+  cgMLSTOutbreakDetection:
+    type: object
+    additionalProperties: false
+    properties:
+      pepfile:
+        type: string
+        description: "Path to the PEP file containing the info how to load the data."
+        default: "config/pep/config.yaml"
+      max_threads:
+        type: integer
+        description: "Number of maximum threads to use in jobs."
+        default: 1
+        Minimum: 1
+      threads:
+        type: object
+        "$ref": "#/definitions/Threads"
+      schemas_dir:
+        type: string
+        description: "Path to the directory containing the organism schemas."
+      organism_schemas_mapping:
+        type: array
+        items:
+          type: object
+          properties:
+            GTDBtk_taxa:
+              type: string
+              description: "The GTDBtk taxa to use for this schema."
+            cgMLST_ridom_schema:
+              type: string
+              description: "The cgMLST schema to use for this taxa."
+            training_file:
+              type: string
+              description: "The training file to use for this taxa."
+              regex: ".*\\.trn"
+    required:
+      - threads
+      - organism_schemas_mapping
+      - max_threads
+      - schemas_dir
+    title: cgMLSTOutbreakDetection
+  Threads:
+    additionalProperties: true
+    properties:
+      chewbacca:
+        type: integer
+        default: 1
+        description: "Number of threads to use for prokka."
+    title: Threads
+    required:
+      - chewbacca
