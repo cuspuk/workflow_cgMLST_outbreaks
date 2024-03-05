@@ -16,7 +16,7 @@ rule prodigal_download_training_file:
     output:
         "{schemas_dir}/chewbacca/{schema_name}/{training_file}",
     params:
-        url=lambda wildcards: f"https://github.com/B-UMMI/chewBBACA/blob/master/CHEWBBACA/prodigal_training_files/{wildcards.training_file}",
+        url=lambda wildcards: f"https://github.com/B-UMMI/chewBBACA/raw/master/CHEWBBACA/prodigal_training_files/{wildcards.training_file}",
     localrule: True
     conda:
         "../envs/curl.yaml"

@@ -10,4 +10,4 @@ if not os.path.exists(snakemake.output.db_dir):
 
 with TemporaryDirectory() as tempdir:
     tmp_zip = os.path.join(tempdir, "test.zip")
-    shell("(curl -SL {snakemake.params.repo} -o {tmp_zip} &&" " unzip {tmp_zip} -d {snakemake.output.db_dir} ) {log}")
+    shell("(curl -SL {snakemake.params.url} -o {tmp_zip} &&" " unzip {tmp_zip} -d {snakemake.output.db_dir} ) {log}")
