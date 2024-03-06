@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/xsitarcik/cgMLST_outbreaks/compare/v1.0.0...v1.1.0) (2024-03-06)
+
+
+### Features
+
+* added script for building pepfile ([5638730](https://github.com/xsitarcik/cgMLST_outbreaks/commit/56387301f787b0fc6c5489ff930f60778c8b4e69))
+
 ## 1.0.0 (2024-03-05)
 
 
