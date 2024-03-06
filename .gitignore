@@ -6,6 +6,7 @@
 !.tests/config/**
 !.tests/test_data/
 !.tests/test_data/**
+!build_pepfile_from_dirs.py
 !config/
 !config/**
 !resources/
