@@ -46,6 +46,7 @@ rule chewbacca_extract_cgMLST:
         tsv="results/cgMLST/{taxa_label}/results_alleles_NoParalogs.tsv",
     output:
         html="results/cgMLST/{taxa_label}/extracted_genes/cgMLST.html",
+        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv",
     params:
         out_dir=lambda wildcards, output: os.path.dirname(output.html),
     conda:
@@ -54,3 +55,16 @@ rule chewbacca_extract_cgMLST:
         "logs/chewbacca/extract_cgMLST/{taxa_label}.log",
     shell:
         "chewBBACA.py ExtractCgMLST -i {input.tsv} -o {params.out_dir} > {log} 2>&1"
+
+
+rule cgMLST_distances:
+    input:
+        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv",
+    output:
+        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv",
+    conda:
+        "../envs/cgmlst_dists.yaml"
+    log:
+        "logs/cgMLST_distances/{taxa_label}.log",
+    shell:
+        "cgMLST_distance.py -i {input.tsv} -o {output.tsv} > {log} 2>&1"

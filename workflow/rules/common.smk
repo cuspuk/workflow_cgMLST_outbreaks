@@ -92,7 +92,9 @@ def infer_cleaned_assemblies_for_taxa_label(wildcards):
 
 def get_outputs():
     return {
-        "extracted": expand("results/cgMLST/{taxa_label}/extracted_genes/cgMLST.html", taxa_label=get_taxa_labels()),
+        "distances": expand(
+            "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv", taxa_label=get_taxa_labels()
+        ),
     }
 
 
