@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.2.0](https://github.com/xsitarcik/cgMLST_outbreaks/compare/v1.1.0...v1.2.0) (2024-03-07)
+
+
+### Features
+
+* added cgmlst_dists ([a985162](https://github.com/xsitarcik/cgMLST_outbreaks/commit/a98516225a06c16f32a145dc42a49f7045371c3f))
+* reworked to allow other schemas than ridom ([69e99c2](https://github.com/xsitarcik/cgMLST_outbreaks/commit/69e99c2c109d1976953429ff55e72e7d628b57dd))
+* samples are processed per taxa list ([ff166e9](https://github.com/xsitarcik/cgMLST_outbreaks/commit/ff166e99f266ba8058a74a3185a88adeb80fbc0c))
+
 ## [1.1.0](https://github.com/xsitarcik/cgMLST_outbreaks/compare/v1.0.0...v1.1.0) (2024-03-06)
 
 
