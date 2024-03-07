@@ -17,29 +17,44 @@ definitions:
       threads:
         type: object
         "$ref": "#/definitions/Threads"
-      schemas_dir:
+      without_cgmlst_dist:
+        type: boolean
+        description: "If true, the cgMLST distance matrix will not be generated."
+        default: false
+      schemas_root_dir:
         type: string
         description: "Path to the directory containing the organism schemas."
       organism_schemas_mapping:
         type: array
+        minItems: 1
         items:
           type: object
           properties:
-            GTDBtk_taxa:
+            taxa_label:
               type: string
+              description: "The label to use for the outputs."
+            GTDBtk_taxa:
+              type: array
+              items:
+                type: string
               description: "The GTDBtk taxa to use for this schema."
-            cgMLST_ridom_schema:
+            cgMLST_schema:
               type: string
               description: "The cgMLST schema to use for this taxa."
             training_file:
               type: string
               description: "The training file to use for this taxa."
               regex: ".*\\.trn"
+          required:
+            - taxa_label
+            - GTDBtk_taxa
+            - cgMLST_schema
+            - training_file
     required:
       - threads
       - organism_schemas_mapping
       - max_threads
-      - schemas_dir
+      - schemas_root_dir
     title: cgMLSTOutbreakDetection
   Threads:
     additionalProperties: true

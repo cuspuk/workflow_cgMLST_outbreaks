@@ -22,24 +22,21 @@ validate(pep.sample_table, "../schemas/samples.schema.yaml")
 
 @dataclass
 class SchemaMapping:
-    GTDBtk_taxa: str
-    cgMLST_ridom_schema: str
+    GTDBtk_taxa: list[str]
+    cgMLST_schema: str
     training_file: str
-    taxa_label: str = None
-
-    def __post_init__(self):
-        self.taxa_label = self.GTDBtk_taxa.strip().replace(" ", "_").lower()
+    taxa_label: str
 
 
 MAPPINGS: list[SchemaMapping] = [SchemaMapping(**cfg) for cfg in config["organism_schemas_mapping"]]
 
-SCHEMA_DIR = os.path.abspath(config["schemas_dir"])
+SCHEMA_DIR = os.path.abspath(config["schemas_root_dir"])
 
 
 def get_constraints():
     return {
-        "schemas_dir": SCHEMA_DIR,
-        "schema_name": "|".join([mapping.cgMLST_ridom_schema for mapping in MAPPINGS]),
+        "schemas_root_dir": SCHEMA_DIR,
+        "schema_name": "|".join([mapping.cgMLST_schema for mapping in MAPPINGS]),
         "training_file": "|".join([mapping.training_file for mapping in MAPPINGS]),
         "taxa_label": "|".join([mapping.taxa_label for mapping in MAPPINGS]),
     }
@@ -59,7 +56,7 @@ def get_mapping_for_taxa_label(taxa_label: str) -> SchemaMapping:
 
 def get_sample_names_for_taxa_label(taxa_label: str) -> list[str]:
     mapping = get_mapping_for_taxa_label(taxa_label)
-    return list(pep.sample_table[pep.sample_table["GTDBtk_taxa"] == mapping.GTDBtk_taxa]["sample_name"].values)
+    return list(pep.sample_table[pep.sample_table["GTDBtk_taxa"].isin(mapping.GTDBtk_taxa)]["sample_name"].values)
 
 
 def get_taxa_labels():
@@ -78,13 +75,13 @@ def infer_assembly_fasta(wildcards) -> str:
 
 
 def infer_chewbacca_schema_for_taxa_label(wildcards) -> str:
-    schema_name = get_mapping_for_taxa_label(wildcards.taxa_label).cgMLST_ridom_schema
+    schema_name = get_mapping_for_taxa_label(wildcards.taxa_label).cgMLST_schema
     return os.path.join(SCHEMA_DIR, "chewbacca", schema_name, wildcards.taxa_label)
 
 
 def infer_training_file_for_taxa_label(wildcards) -> str:
     mapping = get_mapping_for_taxa_label(wildcards.taxa_label)
-    return os.path.join(SCHEMA_DIR, "chewbacca", mapping.cgMLST_ridom_schema, mapping.training_file)
+    return os.path.join(SCHEMA_DIR, "chewbacca", mapping.cgMLST_schema, mapping.training_file)
 
 
 def infer_cleaned_assemblies_for_taxa_label(wildcards):
@@ -94,9 +91,18 @@ def infer_cleaned_assemblies_for_taxa_label(wildcards):
 
 
 def get_outputs():
-    return {
-        "extracted": expand("results/cgMLST/{taxa_label}/extracted_genes/cgMLST.html", taxa_label=get_taxa_labels()),
-    }
+    if config.get("without_cgmlst_dist", True):
+        return {
+            "cgmlst": expand("results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv", taxa_label=get_taxa_labels()),
+        }
+
+    else:
+
+        return {
+            "distances": expand(
+                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv", taxa_label=get_taxa_labels()
+            ),
+        }
 
 
 ### Contract for other workflows ######################################################################################

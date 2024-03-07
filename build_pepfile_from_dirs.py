@@ -3,11 +3,6 @@ import os
 import sys
 from dataclasses import dataclass
 
-# This script takes the assemblies from the source_dir and puts them together in the dest_dir
-# The source_dir is expected to have the following structure:
-# source_dir/{sample}/assembly.fasta
-# All are renamed and moved to dest_dir as dest_dir/{sample}.fasta
-
 DEFAULT_RELATIVE_TAXA_PATH = "results/taxonomy/{sample}/parsed_taxa.txt"
 DEFAULT_RELATIVE_FASTA_PATH = "results/assembly/{sample}/assembly.fasta"
 DEFAULT_PEPFILE = "config/pep/samples.csv"
