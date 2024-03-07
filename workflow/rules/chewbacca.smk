@@ -67,4 +67,4 @@ rule cgMLST_distances:
     log:
         "logs/cgMLST_distances/{taxa_label}.log",
     shell:
-        "cgMLST_distance.py -i {input.tsv} -o {output.tsv} > {log} 2>&1"
+        "cgmlst-dists {input.tsv} > {output.tsv} 2>&1"
