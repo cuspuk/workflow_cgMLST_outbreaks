@@ -1,10 +1,13 @@
-schemas_dir: "/data/genome/others/ridom_schemas/"
+schemas_root_dir: "/data/genome/others/ridom_schemas/"
 
 organism_schemas_mapping:
-  - GTDBtk_taxa: # specify taxa from GTDBtk taxonomy. Samples with this taxa will be used for this schema.
+  - taxa_label: "klebsiella" # defines the name of output in results/
+    GTDBtk_taxa: # specify taxa from GTDBtk taxonomy. Samples with this taxa will be used for this schema.
       - "Klebsiella pneumoniae"
       - "Klebsiella quasipneumoniae"
-    cgMLST_ridom_schema: "Kpneumoniae2267" # Schema taken from https://www.cgmlst.org/ncs/schema/ click on the organism of interest. Get the schema name from the URL as the last element.
+    cgMLST_schema: "ridom/Kpneumoniae2267" # This is a relative path from schemas_root_dir
+    # prefix with ridom/ to download schema from RIDOM. The name should be taken from https://www.cgmlst.org/ncs/schema/ click on the organism of interest. Get the schema name from the URL as the last element.
+    # or set to custom_schemas/{CUSTOM_NAME} to use a custom schema from the schemas_root_dir. You must provide the valid schema.
     training_file: "Klebsiella_pneumoniae.trn" # Training filename with extension. See files at https://github.com/B-UMMI/chewBBACA/blob/master/CHEWBBACA/prodigal_training_files/
 
 max_threads: 8
