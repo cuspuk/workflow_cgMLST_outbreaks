@@ -14,3 +14,5 @@ max_threads: 2
 
 threads:
   chewbacca: 2
+
+without_cgmlst_dist: True

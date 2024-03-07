@@ -17,6 +17,10 @@ definitions:
       threads:
         type: object
         "$ref": "#/definitions/Threads"
+      without_cgmlst_dist:
+        type: boolean
+        description: "If true, the cgMLST distance matrix will not be generated."
+        default: false
       schemas_root_dir:
         type: string
         description: "Path to the directory containing the organism schemas."

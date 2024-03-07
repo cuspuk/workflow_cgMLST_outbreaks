@@ -1,4 +1,4 @@
-schemas_root_dir: "/data/genome/others/ridom_schemas/"
+schemas_root_dir: "/data/genome/others/cgmlst_schemas/"
 
 organism_schemas_mapping:
   - taxa_label: "klebsiella" # defines the name of output in results/
@@ -10,7 +10,7 @@ organism_schemas_mapping:
     # or set to custom_schemas/{CUSTOM_NAME} to use a custom schema from the schemas_root_dir. You must provide the valid schema.
     training_file: "Klebsiella_pneumoniae.trn" # Training filename with extension. See files at https://github.com/B-UMMI/chewBBACA/blob/master/CHEWBBACA/prodigal_training_files/
 
-max_threads: 8
+max_threads: 16
 
 threads:
-  chewbacca: 2
+  chewbacca: 16

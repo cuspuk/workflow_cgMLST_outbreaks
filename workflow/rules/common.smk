@@ -91,11 +91,16 @@ def infer_cleaned_assemblies_for_taxa_label(wildcards):
 
 
 def get_outputs():
-    return {
-        "distances": expand(
-            "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv", taxa_label=get_taxa_labels()
-        ),
-    }
+    if config.get("without_cgmlst_dist", True):
+        return {
+            "distances": expand(
+                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv", taxa_label=get_taxa_labels()
+            ),
+        }
+    else:
+        return {
+            "cgmlst": expand("results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv", taxa_label=get_taxa_labels()),
+        }
 
 
 ### Contract for other workflows ######################################################################################
