@@ -86,18 +86,16 @@ def infer_training_file_for_taxa_label(wildcards) -> str:
 
 def infer_cleaned_assemblies_for_taxa_label(wildcards):
     return expand(
-        "results/assembly/cleaned/{sample}.fasta", sample=get_sample_names_for_taxa_label(wildcards.taxa_label)
+        "results/assembly/cleaned/{sample}_cleaned.fasta", sample=get_sample_names_for_taxa_label(wildcards.taxa_label)
     )
 
 
 def get_outputs():
-    if config.get("without_cgmlst_dist", True):
+    if config.get("without_cgmlst_dist", False):
         return {
             "cgmlst": expand("results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv", taxa_label=get_taxa_labels()),
         }
-
     else:
-
         return {
             "distances": expand(
                 "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv", taxa_label=get_taxa_labels()

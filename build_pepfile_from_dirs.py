@@ -34,7 +34,8 @@ class Sample:
         return "sample_name,fasta,GTDBtk_taxa"
 
 
-def parse_pepfile(root: str) -> list[str]:
+def parse_pepfile(root: str) -> dict[str, str | None]:
+    samples: dict[str, str | None] = {}
     pepfile = os.path.join(root, DEFAULT_PEPFILE)
     with open(pepfile, "r") as f:
         header = f.readline().strip().split(",")
@@ -44,13 +45,29 @@ def parse_pepfile(root: str) -> list[str]:
             sample_idx = header.index("sample")
         else:
             raise ValueError(f"Could not find sample_name in the header of {pepfile}")
-        samples = [x.rstrip().split(",")[sample_idx] for x in f.readlines() if len(x) > 1]
+
+        if "fasta" in header:
+            fasta_idx = header.index("fasta")
+        else:
+            fasta_idx = None
+
+        for x in f.readlines():
+            if len(x) > 1:
+                if fasta_idx is not None:
+                    samples[x.rstrip().split(",")[sample_idx]] = x.rstrip().split(",")[fasta_idx]
+                else:
+                    samples[x.rstrip().split(",")[sample_idx]] = None
+
     return samples
 
 
-def parse_sample(root_dir: str, sample: str) -> Sample:
+def parse_sample(root_dir: str, sample: str, fasta: str | None) -> Sample:
+    if fasta:
+        assembly_file = fasta
+    else:
+        assembly_file = os.path.join(root_dir, DEFAULT_RELATIVE_FASTA_PATH.format(sample=sample))
+
     taxa_file = os.path.join(root_dir, DEFAULT_RELATIVE_TAXA_PATH.format(sample=sample))
-    assembly_file = os.path.join(root_dir, DEFAULT_RELATIVE_FASTA_PATH.format(sample=sample))
     if not os.path.exists(taxa_file) or not os.path.exists(assembly_file):
         if os.path.exists(assembly_file):
             raise SampleWithoutOutputException(sample, root_dir, [taxa_file])
@@ -63,13 +80,13 @@ def parse_sample(root_dir: str, sample: str) -> Sample:
 
 
 def parse_analysis_dir(root_dir: str):
-    sample_names = parse_pepfile(root_dir)
+    samples_dct = parse_pepfile(root_dir)
 
     success_samples: list[Sample] = []
     failed_samples: list[SampleWithoutOutputException] = []
-    for name in sample_names:
+    for name, fasta in samples_dct.items():
         try:
-            success_samples.append(parse_sample(root_dir, name))
+            success_samples.append(parse_sample(root_dir, name, fasta))
         except SampleWithoutOutputException as err:
             failed_samples.append(err)
     return success_samples, failed_samples

@@ -57,9 +57,25 @@ rule chewbacca_extract_cgMLST:
         "chewBBACA.py ExtractCgMLST -i {input.tsv} -o {params.out_dir} > {log} 2>&1"
 
 
-rule cgMLST_distances:
+rule chewbacca_cleanup_names:
     input:
         tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv",
+    output:
+        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_cleaned.tsv",
+    params:
+        suffix="_cleaned",
+    localrule: True
+    conda:
+        "../envs/python.yaml"
+    log:
+        "logs/cgMLST_distances/{taxa_label}_cleanup.log",
+    script:
+        "../scripts/chewbacca_cleanup_names.py"
+
+
+rule cgMLST_distances:
+    input:
+        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_cleaned.tsv",
     output:
         tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv",
     conda:
@@ -67,4 +83,4 @@ rule cgMLST_distances:
     log:
         "logs/cgMLST_distances/{taxa_label}.log",
     shell:
-        "cgmlst-dists {input.tsv} > {output.tsv} 2>&1"
+        "cgmlst-dists {input.tsv} > {output.tsv} 2> {log}"
