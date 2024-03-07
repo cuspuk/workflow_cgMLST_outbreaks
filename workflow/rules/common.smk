@@ -95,9 +95,7 @@ def get_outputs():
         return {
             "cgmlst": expand("results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv", taxa_label=get_taxa_labels()),
         }
-
     else:
-
         return {
             "distances": expand(
                 "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv", taxa_label=get_taxa_labels()
