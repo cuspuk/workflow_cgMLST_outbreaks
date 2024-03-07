@@ -22,13 +22,10 @@ validate(pep.sample_table, "../schemas/samples.schema.yaml")
 
 @dataclass
 class SchemaMapping:
-    GTDBtk_taxa: str
+    GTDBtk_taxa: list[str]
     cgMLST_ridom_schema: str
     training_file: str
-    taxa_label: str = None
-
-    def __post_init__(self):
-        self.taxa_label = self.GTDBtk_taxa.strip().replace(" ", "_").lower()
+    taxa_label: str
 
 
 MAPPINGS: list[SchemaMapping] = [SchemaMapping(**cfg) for cfg in config["organism_schemas_mapping"]]
@@ -59,7 +56,7 @@ def get_mapping_for_taxa_label(taxa_label: str) -> SchemaMapping:
 
 def get_sample_names_for_taxa_label(taxa_label: str) -> list[str]:
     mapping = get_mapping_for_taxa_label(taxa_label)
-    return list(pep.sample_table[pep.sample_table["GTDBtk_taxa"] == mapping.GTDBtk_taxa]["sample_name"].values)
+    return list(pep.sample_table[pep.sample_table["GTDBtk_taxa"].isin(mapping.GTDBtk_taxa)]["sample_name"].values)
 
 
 def get_taxa_labels():

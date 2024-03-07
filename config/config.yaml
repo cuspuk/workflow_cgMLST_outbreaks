@@ -1,7 +1,9 @@
 schemas_dir: "/data/genome/others/ridom_schemas/"
 
 organism_schemas_mapping:
-  - GTDBtk_taxa: "Klebsiella pneumoniae" # samples with this taxa will be used for this schema.
+  - GTDBtk_taxa: # specify taxa from GTDBtk taxonomy. Samples with this taxa will be used for this schema.
+      - "Klebsiella pneumoniae"
+      - "Klebsiella quasipneumoniae"
     cgMLST_ridom_schema: "Kpneumoniae2267" # Schema taken from https://www.cgmlst.org/ncs/schema/ click on the organism of interest. Get the schema name from the URL as the last element.
     training_file: "Klebsiella_pneumoniae.trn" # Training filename with extension. See files at https://github.com/B-UMMI/chewBBACA/blob/master/CHEWBBACA/prodigal_training_files/
 
