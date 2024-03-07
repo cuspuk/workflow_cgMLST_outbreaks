@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.1](https://github.com/xsitarcik/cgMLST_outbreaks/compare/v1.2.0...v1.2.1) (2024-03-07)
+
+
+### Bug Fixes
+
+* fix chewbacca handling of bad filenames ([c28afd1](https://github.com/xsitarcik/cgMLST_outbreaks/commit/c28afd1de7dd87c839ddccf52216dc184fb4e800))
+* pepfile script works with analyses from assembly ([6be4c52](https://github.com/xsitarcik/cgMLST_outbreaks/commit/6be4c523f3ade009a1328b634fe20cf46ed8b0be))
+
 ## [1.2.0](https://github.com/xsitarcik/cgMLST_outbreaks/compare/v1.1.0...v1.2.0) (2024-03-07)
 
 
