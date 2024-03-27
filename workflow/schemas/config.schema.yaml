@@ -9,6 +9,9 @@ definitions:
         type: string
         description: "Path to the PEP file containing the info how to load the data."
         default: "config/pep/config.yaml"
+      chewbacca_schemas_dir:
+        type: string
+        description: "The directory where the chewbacca schemas will be stored."
       max_threads:
         type: integer
         description: "Number of maximum threads to use in jobs."
@@ -21,9 +24,6 @@ definitions:
         type: boolean
         description: "If true, the cgMLST distance matrix will not be generated."
         default: false
-      schemas_root_dir:
-        type: string
-        description: "Path to the directory containing the organism schemas."
       organism_schemas_mapping:
         type: array
         minItems: 1
@@ -38,23 +38,31 @@ definitions:
               items:
                 type: string
               description: "The GTDBtk taxa to use for this schema."
-            cgMLST_schema:
+            cgMLST_schema_dir:
               type: string
               description: "The cgMLST schema to use for this taxa."
+            cgMLST_schema_download_url:
+              type: [string, "null"]
+              description: "The URL to download the cgMLST schema if it does not exist."
             training_file:
               type: string
               description: "The training file to use for this taxa."
-              regex: ".*\\.trn"
+              pattern: ".*\\.trn"
+            training_file_download_url:
+              type: [string, "null"]
+              description: "The URL to download the training file if it does not exist."
           required:
             - taxa_label
             - GTDBtk_taxa
-            - cgMLST_schema
-            - training_file
+            - cgMLST_schema_dir
+            - cgMLST_schema_download_url
+            - training_file_full_path
+            - training_file_download_url
     required:
       - threads
       - organism_schemas_mapping
       - max_threads
-      - schemas_root_dir
+      - chewbacca_schemas_dir
     title: cgMLSTOutbreakDetection
   Threads:
     additionalProperties: true
