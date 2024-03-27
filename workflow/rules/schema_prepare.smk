@@ -1,6 +1,6 @@
 rule ridom_schema_download:
     output:
-        db_dir="{cgMLST_schema_dir}",
+        db_dir=directory("{cgMLST_schema_dir}"),
     params:
         url=infer_url_for_schema_download,
     localrule: True
