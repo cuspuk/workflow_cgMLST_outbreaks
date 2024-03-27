@@ -5,8 +5,8 @@ organism_schemas_mapping:
     GTDBtk_taxa: # specify taxa from GTDBtk taxonomy. Samples with this taxa will be used for this schema.
       - "Klebsiella pneumoniae"
       - "Klebsiella quasipneumoniae"
-    cgMLST_schema_dir: "resources/cgmlst_schemas/ridom/Kpneumoniae2267"
-    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Kpneumoniae2267/alleles/"
+    cgMLST_schema_dir: "resources/cgmlst_schemas/ridom/Kpneumoniae235"
+    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Kpneumoniae235/alleles/"
     training_file_full_path: "resources/schemas/Klebsiella_pneumoniae.trn" # Training filename with extension. See files at https://github.com/B-UMMI/chewBBACA/blob/master/CHEWBBACA/prodigal_training_files/
     training_file_download_url: "https://github.com/B-UMMI/chewBBACA/raw/master/CHEWBBACA/prodigal_training_files/Klebsiella_pneumoniae.trn"
 

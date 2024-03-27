@@ -89,7 +89,7 @@ def infer_url_for_training_file(wildcards):
             continue
 
         if not mapping.training_file_download_url or mapping.training_file_download_url == "null":
-            raise ValueError(f"No download URL for training file {wildcards.training_file_full_path}")
+            return ""
         return mapping.training_file_download_url
 
 
@@ -99,7 +99,7 @@ def infer_url_for_schema_download(wildcards):
             continue
 
         if not mapping.cgMLST_schema_download_url or mapping.cgMLST_schema_download_url == "null":
-            raise ValueError(f"No download URL for schema {wildcards.cgMLST_schema_dir}")
+            return ""
         return mapping.cgMLST_schema_download_url
 
 
