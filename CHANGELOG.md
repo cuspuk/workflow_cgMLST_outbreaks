@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.3.0](https://github.com/xsitarcik/cgMLST_outbreaks/compare/v1.2.1...v1.3.0) (2024-03-27)
+
+
+### Features
+
+* refactored config to accept full paths instead of relative paths for schemas ([6ad4117](https://github.com/xsitarcik/cgMLST_outbreaks/commit/6ad41174c844cf402a6b360cfb94a7e7f7f1ab5c))
+
+
+### Bug Fixes
+
+* request outputs only for taxa labels that have samples ([bc7de9e](https://github.com/xsitarcik/cgMLST_outbreaks/commit/bc7de9edf106a663b435cffc9e0ad48a958eb268))
+
 ## [1.2.1](https://github.com/xsitarcik/cgMLST_outbreaks/compare/v1.2.0...v1.2.1) (2024-03-07)
 
 
