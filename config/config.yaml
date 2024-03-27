@@ -1,14 +1,31 @@
-schemas_root_dir: "/data/genome/others/cgmlst_schemas/"
+chewbacca_schemas_dir: "/data/genome/others/cgmlst_schemas/chewbacca"
+# here you can specify the directory where the schemas will be stored. If the directory does not exist, it will be created.
 
 organism_schemas_mapping:
   - taxa_label: "klebsiella" # defines the name of output in results/
     GTDBtk_taxa: # specify taxa from GTDBtk taxonomy. Samples with this taxa will be used for this schema.
       - "Klebsiella pneumoniae"
       - "Klebsiella quasipneumoniae"
-    cgMLST_schema: "ridom/Kpneumoniae2267" # This is a relative path from schemas_root_dir
-    # prefix with ridom/ to download schema from RIDOM. The name should be taken from https://www.cgmlst.org/ncs/schema/ click on the organism of interest. Get the schema name from the URL as the last element.
-    # or set to custom_schemas/{CUSTOM_NAME} to use a custom schema from the schemas_root_dir. You must provide the valid schema.
-    training_file: "Klebsiella_pneumoniae.trn" # Training filename with extension. See files at https://github.com/B-UMMI/chewBBACA/blob/master/CHEWBBACA/prodigal_training_files/
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Kpneumoniae235"
+    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Kpneumoniae235/alleles/"
+    # either provide custom schema in cgMLST_schema_dir or provide download URL to download the schema.
+    # RIDOM schemas are at https://www.cgmlst.org/ncs/schema/ click on the organism of interest. Get the schema name from the URL as the last element.
+    training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/Klebsiella_pneumoniae.trn" # Training filename with extension.
+    training_file_download_url: "https://github.com/B-UMMI/chewBBACA/raw/master/CHEWBBACA/prodigal_training_files/Klebsiella_pneumoniae.trn"
+    # If the file does not exist and valid URL is provided, it will be downloaded. Else file must be provided or error will be raised.
+
+  - taxa_label: "bordetella"
+    GTDBtk_taxa:
+      - "Bordetella pertussis"
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Bpertussis189"
+    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Bpertussis189/alleles/"
+    training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/B_pertussis_NCBI_reference.trn"
+    training_file_download_url: null # file is provided, no need to download.
+
+# Note:
+# Each `taxa_label` must be unique
+# Each `cgMLST_schema_dir` must be unique
+# `chewbacca_schemas_dir` and `cgMLST_schema_dir` cannot be full prefixes of each other
 
 max_threads: 16
 
