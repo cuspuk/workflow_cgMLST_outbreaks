@@ -11,4 +11,4 @@ log = snakemake.log_fmt_shell(stdout=True, stderr=True)
 
 with TemporaryDirectory() as tempdir:
     tmp_zip = os.path.join(tempdir, "test.zip")
-    shell("(curl -SL {snakemake.params.url} -o {tmp_zip} &&" " unzip {tmp_zip} -d {snakemake.output.db_dir} ) {log}")
+    shell("(curl -SL {snakemake.params.url} -o {tmp_zip} && unzip {tmp_zip} -d {snakemake.output.db_dir} ) {log}")
