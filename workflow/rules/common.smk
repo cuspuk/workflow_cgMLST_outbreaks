@@ -54,8 +54,8 @@ def get_sample_names_for_taxa_label(taxa_label: str) -> list[str]:
     return list(pep.sample_table[pep.sample_table["GTDBtk_taxa"].isin(mapping.GTDBtk_taxa)]["sample_name"].values)
 
 
-def get_taxa_labels():
-    return [mapping.taxa_label for mapping in MAPPINGS]
+def get_valid_taxa_labels():
+    return [mapping.taxa_label for mapping in MAPPINGS if get_sample_names_for_taxa_label(mapping.taxa_label)]
 
 
 ### Global rule-set stuff #############################################################################################
@@ -84,9 +84,6 @@ def infer_cleaned_assemblies_for_taxa_label(wildcards):
 
 
 def infer_url_for_training_file(wildcards):
-    if os.path.exists(wildcards.training_file_full_path):
-        return ""
-
     for mapping in MAPPINGS:
         if mapping.training_file_full_path != wildcards.training_file_full_path:
             continue
@@ -97,9 +94,6 @@ def infer_url_for_training_file(wildcards):
 
 
 def infer_url_for_schema_download(wildcards):
-    if os.path.exists(wildcards.cgMLST_schema_dir):
-        return ""
-
     for mapping in MAPPINGS:
         if mapping.cgMLST_schema_dir != wildcards.cgMLST_schema_dir:
             continue
@@ -112,12 +106,14 @@ def infer_url_for_schema_download(wildcards):
 def get_outputs():
     if config.get("without_cgmlst_dist", False):
         return {
-            "cgmlst": expand("results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv", taxa_label=get_taxa_labels()),
+            "cgmlst": expand(
+                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv", taxa_label=get_valid_taxa_labels()
+            ),
         }
     else:
         return {
             "distances": expand(
-                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv", taxa_label=get_taxa_labels()
+                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv", taxa_label=get_valid_taxa_labels()
             ),
         }
 
