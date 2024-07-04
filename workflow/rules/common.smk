@@ -29,6 +29,26 @@ class SchemaMapping:
     training_file_full_path: str
     training_file_download_url: str | None
 
+    def __post_init__(self):
+        if not self.cgMLST_schema_download_url:
+            if not os.path.exists(self.cgMLST_schema_dir):
+                raise ValueError(
+                    f"cgMLST schema directory {self.cgMLST_schema_dir} does not exist and no download URL was provided."
+                )
+        if not self.training_file_download_url:
+            if not os.path.exists(self.training_file_full_path):
+                raise ValueError(
+                    f"Training file {self.training_file_full_path} does not exist and no download URL was provided."
+                )
+        if config["chewbacca_schemas_dir"].startswith(self.cgMLST_schema_dir):
+            raise ValueError(
+                f"Config invalid. cgMLST schema directory for taxa_label={self.taxa_label} is a subdirectory of chewbacca_schemas_dir."
+            )
+        if self.cgMLST_schema_dir.startswith(config["chewbacca_schemas_dir"]):
+            raise ValueError(
+                f"Config invalid. chewbacca_schemas_dir is a subdirectory of cgMLST_schema_dir for taxa_label={self.taxa_label}."
+            )
+
 
 MAPPINGS: list[SchemaMapping] = [SchemaMapping(**cfg) for cfg in config["organism_schemas_mapping"]]
 
