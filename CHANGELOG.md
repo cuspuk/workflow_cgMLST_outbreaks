@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.1](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.3.0...v1.3.1) (2024-07-08)
+
+
+### Bug Fixes
+
+* added checks for urls if schemas not already present. Added check for prefix ([074bd29](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/074bd29e602fc89ffdfdd1af143bd37bd9c260f7))
+
 ## [1.3.0](https://github.com/xsitarcik/cgMLST_outbreaks/compare/v1.2.1...v1.3.0) (2024-03-27)
 
 
