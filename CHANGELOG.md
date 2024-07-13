@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.3.1...v1.4.0) (2024-07-13)
+
+
+### Features
+
+* updated config and coupled trn files ([2c43bae](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/2c43baec05e5a64d74ca7f5b5c2e27bd10c9ba4a))
+
 ## [1.3.1](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.3.0...v1.3.1) (2024-07-08)
 
 
