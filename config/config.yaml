@@ -6,28 +6,88 @@ organism_schemas_mapping:
     GTDBtk_taxa: # specify taxa from GTDBtk taxonomy. Samples with this taxa will be used for this schema.
       - "Klebsiella pneumoniae"
       - "Klebsiella quasipneumoniae"
-    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Kpneumoniae235"
-    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Kpneumoniae235/alleles/"
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Kpneumoniae2492"
+    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Kpneumoniae2492/alleles/"
     # either provide custom schema in cgMLST_schema_dir or provide download URL to download the schema.
     # RIDOM schemas are at https://www.cgmlst.org/ncs/schema/ click on the organism of interest. Get the schema name from the URL as the last element.
     training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/Klebsiella_pneumoniae.trn" # Training filename with extension.
-    training_file_download_url: "https://github.com/B-UMMI/chewBBACA/raw/master/CHEWBBACA/prodigal_training_files/Klebsiella_pneumoniae.trn"
+    training_file_download_url: "https://github.com/B-UMMI/chewBBACA/raw/v3.3.8/CHEWBBACA/prodigal_training_files/Klebsiella_pneumoniae.trn"
     # If the file does not exist and valid URL is provided, it will be downloaded. Else file must be provided or error will be raised.
 
   - taxa_label: "bordetella"
     GTDBtk_taxa:
       - "Bordetella pertussis"
-    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Bpertussis189"
-    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Bpertussis189/alleles/"
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Bpertussis2502"
+    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Bpertussis2502/alleles/"
     training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/B_pertussis_NCBI_reference.trn"
-    training_file_download_url: null # file is provided, no need to download.
+    training_file_download_url: null # file provided manually, see workflow/resources
 
-# Note:
-# Each `taxa_label` must be unique
-# Each `cgMLST_schema_dir` must be unique
-# `chewbacca_schemas_dir` and `cgMLST_schema_dir` cannot be full prefixes of each other
+  - taxa_label: "campylobacter"
+    GTDBtk_taxa:
+      - "Campylobacter jejuni"
+      - "Campylobacter coli"
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Cjejuni2496"
+    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Cjejuni2496/alleles/"
+    training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/Campylobacter_jejuni.trn"
+    training_file_download_url: "https://github.com/B-UMMI/chewBBACA/raw/v3.3.8/CHEWBBACA/prodigal_training_files/Campylobacter_jejuni.trn"
 
-max_threads: 16
+  - taxa_label: "senterica"
+    GTDBtk_taxa:
+      - "Salmonella enterica"
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Senterica2494"
+    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Senterica2494/alleles/"
+    training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/Salmonella_enterica.trn"
+    training_file_download_url: "https://github.com/B-UMMI/chewBBACA/raw/v3.3.8/CHEWBBACA/prodigal_training_files/Salmonella_enterica.trn"
+
+  - taxa_label: "spneumoniae"
+    GTDBtk_taxa:
+      - "Streptococcus pneumoniae"
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/custom/spneumoniae20240704"
+    cgMLST_schema_download_url: null # constructed manually, see the path at GEN-MANAGER
+    training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/Streptococcus_pneumoniae.trn"
+    training_file_download_url: "https://github.com/B-UMMI/chewBBACA/raw/v3.3.8/CHEWBBACA/prodigal_training_files/Streptococcus_pneumoniae.trn"
+
+  - taxa_label: "efaecalis"
+    GTDBtk_taxa:
+      - "Enterococcus faecalis"
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Efaecalis2497"
+    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Efaecalis2497/alleles/"
+    training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/Enterococcus_faecalis.trn"
+    training_file_download_url: null # provided manually, see workflow/resources
+
+  - taxa_label: "efaecium"
+    GTDBtk_taxa:
+      - "Enterococcus faecium"
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Efaecium2501"
+    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Efaecium2501/alleles/"
+    training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/Enterococcus_faecium.trn"
+    training_file_download_url: "https://github.com/B-UMMI/chewBBACA/raw/v3.3.8/CHEWBBACA/prodigal_training_files/Enterococcus_faecium.trn"
+
+  - taxa_label: "ecoli"
+    GTDBtk_taxa:
+      - "Escherichia coli"
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Ecoli2489"
+    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Ecoli2489/alleles/"
+    training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/Escherichia_coli.trn"
+    training_file_download_url: "https://github.com/B-UMMI/chewBBACA/raw/v3.3.8/CHEWBBACA/prodigal_training_files/Escherichia_coli.trn"
+
+  - taxa_label: "paeruginosa"
+    GTDBtk_taxa:
+      - "Pseudomonas aeruginosa"
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Paeruginosa2490"
+    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Paeruginosa2490/alleles/"
+    training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/Pseudomonas_aeruginosa.trn"
+    training_file_download_url: "https://github.com/B-UMMI/chewBBACA/raw/v3.3.8/CHEWBBACA/prodigal_training_files/Pseudomonas_aeruginosa.trn"
+
+  - taxa_label: "saureus"
+    GTDBtk_taxa:
+      - "Staphylococcus aureus"
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/ridom/Saureus2490"
+    cgMLST_schema_download_url: "https://www.cgmlst.org/ncs/schema/Saureus2490/alleles/"
+    training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/Staphylococcus_aureus.trn"
+    training_file_download_url: "https://github.com/B-UMMI/chewBBACA/raw/v3.3.8/CHEWBBACA/prodigal_training_files/Staphylococcus_aureus.trn"
+
+max_threads: 28
 
 threads:
-  chewbacca: 16
+  chewbacca: 28
