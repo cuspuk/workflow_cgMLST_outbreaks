@@ -56,8 +56,12 @@ MAPPINGS: list[SchemaMapping] = [SchemaMapping(**cfg) for cfg in config["organis
 def get_constraints():
     return {
         "taxa_label": "|".join([mapping.taxa_label for mapping in MAPPINGS]),
-        "cgMLST_schema_dir": "|".join([mapping.cgMLST_schema_dir for mapping in MAPPINGS]),
-        "training_file_full_path": "|".join([mapping.training_file_full_path for mapping in MAPPINGS]),
+        "cgMLST_schema_dir": "|".join(
+            [mapping.cgMLST_schema_dir for mapping in MAPPINGS if mapping.cgMLST_schema_download_url]
+        ),
+        "training_file_full_path": "|".join(
+            [mapping.training_file_full_path for mapping in MAPPINGS if mapping.training_file_download_url]
+        ),
     }
 
 
