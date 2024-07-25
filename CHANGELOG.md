@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.4.0...v1.4.1) (2024-07-25)
+
+
+### Bug Fixes
+
+* prevent redownloading and removing custom paths ([f5c100c](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/f5c100c8d9cdb8fd31ad4a15198ded8efe4de576))
+
 ## [1.4.0](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.3.1...v1.4.0) (2024-07-13)
 
 
