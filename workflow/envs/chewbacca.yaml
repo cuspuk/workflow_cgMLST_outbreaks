@@ -3,4 +3,4 @@ channels:
   - bioconda
   - nodefaults
 dependencies:
-  - chewbbaca=3.3.3
+  - chewbbaca=3.3.9
