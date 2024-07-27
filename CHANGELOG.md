@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.2](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.4.1...v1.4.2) (2024-07-27)
+
+
+### Bug Fixes
+
+* bumped chewbacca version ([9ea07ae](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/9ea07ae56ad46c75be228d44e60483089f5deb69))
+
 ## [1.4.1](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.4.0...v1.4.1) (2024-07-25)
 
 
