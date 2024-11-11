@@ -84,3 +84,16 @@ rule cgMLST_distances:
         "logs/cgMLST_distances/{taxa_label}.log",
     shell:
         "cgmlst-dists {input.tsv} > {output.tsv} 2> {log}"
+
+
+rule newick_tree:
+    input:
+        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv",
+    output:
+        newick="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_tree.newick",
+    conda:
+        "../envs/newick.yaml"
+    log:
+        "logs/cgMLST_distances/{taxa_label}_tree.log",
+    script:
+        "../scripts/newick.R"
