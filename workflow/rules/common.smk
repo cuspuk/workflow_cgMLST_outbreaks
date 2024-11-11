@@ -137,7 +137,7 @@ def get_outputs():
     else:
         return {
             "distances": expand(
-                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv", taxa_label=get_valid_taxa_labels()
+                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_tree.newick", taxa_label=get_valid_taxa_labels()
             ),
         }
 
