@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.0](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.4.2...v1.5.0) (2024-11-11)
+
+
+### Features
+
+* added newick tree ([f85ce83](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/f85ce83cf435ed5a0b98cb977c2b52365ca59621))
+
 ## [1.4.2](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.4.1...v1.4.2) (2024-07-27)
 
 
