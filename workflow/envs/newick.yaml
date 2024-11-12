@@ -4,4 +4,4 @@ channels:
   - conda-forge
   - r
 dependencies:
-  - ape
+  - r-ape

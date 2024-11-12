@@ -129,17 +129,19 @@ def infer_url_for_schema_download(wildcards):
 
 def get_outputs():
     if config.get("without_cgmlst_dist", False):
-        return {
+        outs = {
             "cgmlst": expand(
                 "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv", taxa_label=get_valid_taxa_labels()
             ),
         }
     else:
-        return {
+        outs = {
             "distances": expand(
                 "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_tree.newick", taxa_label=get_valid_taxa_labels()
             ),
         }
+    samples = {"samples": expand("results/{taxa_label}/samples.ini", taxa_label=get_valid_taxa_labels())}
+    return {**outs, **samples}
 
 
 ### Contract for other workflows ######################################################################################

@@ -26,3 +26,16 @@ rule prepare_assemblies_paths:
         "logs/prepare_assemblies_paths/{taxa_label}.log",
     shell:
         "echo -e {params.file_lst:q} > {output} 2> {log}"
+
+
+rule dump_samples:
+    output:
+        "results/{taxa_label}/samples.ini",
+    params:
+        samples=lambda wildcards: "\n".join(get_sample_names_for_taxa_label(wildcards.taxa_label)),
+    conda:
+        "../envs/coreutils.yaml"
+    log:
+        "logs/dump_samples/{taxa_label}.log",
+    shell:
+        "echo -e {params.samples:q} > {output} 2> {log}"
