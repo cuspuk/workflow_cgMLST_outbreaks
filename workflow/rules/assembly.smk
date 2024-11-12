@@ -30,9 +30,10 @@ rule prepare_assemblies_paths:
 
 rule dump_samples:
     output:
-        "results/{taxa_label}/samples.ini",
+        "results/_metadata/{taxa_label}.ini",
     params:
         samples=lambda wildcards: "\n".join(get_sample_names_for_taxa_label(wildcards.taxa_label)),
+    localrule: True
     conda:
         "../envs/coreutils.yaml"
     log:
