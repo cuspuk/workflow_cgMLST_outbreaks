@@ -30,7 +30,7 @@ rule prepare_assemblies_paths:
 
 rule dump_samples:
     output:
-        "results/{taxa_label}/samples.ini",
+        "results/cgMLST/{taxa_label}/samples.ini",
     params:
         samples=lambda wildcards: "\n".join(get_sample_names_for_taxa_label(wildcards.taxa_label)),
     conda:

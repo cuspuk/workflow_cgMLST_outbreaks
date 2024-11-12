@@ -140,7 +140,7 @@ def get_outputs():
                 "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_tree.newick", taxa_label=get_valid_taxa_labels()
             ),
         }
-    samples = {"samples": expand("results/{taxa_label}/samples.ini", taxa_label=get_valid_taxa_labels())}
+    samples = {"samples": expand("results/cgMLST/{taxa_label}/samples.ini", taxa_label=get_valid_taxa_labels())}
     return {**outs, **samples}
 
 
