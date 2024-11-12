@@ -32,10 +32,10 @@ rule dump_samples:
     output:
         "results/{taxa_label}/samples.ini",
     params:
-        samples=lambda wildcards: get_sample_names_for_taxa_label(wildcards.taxa_label),
+        samples=lambda wildcards: "\n".join(get_sample_names_for_taxa_label(wildcards.taxa_label)),
     conda:
         "../envs/coreutils.yaml"
     log:
         "logs/dump_samples/{taxa_label}.log",
     shell:
-        "echo -e '[samples]\n{params.samples}' > {output} 2> {log}"
+        "echo -e {params.samples:q} > {output} 2> {log}"
