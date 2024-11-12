@@ -33,6 +33,7 @@ rule dump_samples:
         "results/cgMLST/{taxa_label}/samples.ini",
     params:
         samples=lambda wildcards: "\n".join(get_sample_names_for_taxa_label(wildcards.taxa_label)),
+    localrule: True
     conda:
         "../envs/coreutils.yaml"
     log:
