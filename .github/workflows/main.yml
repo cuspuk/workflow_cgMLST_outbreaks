@@ -43,13 +43,5 @@ jobs:
           directory: .tests
           snakefile: workflow/Snakefile
           stagein: "conda config --set channel_priority flexible"
-          args: "--use-conda --show-failed-logs --cores 2 --conda-cleanup-pkgs cache"
-          show-disk-usage-on-error: true
-
-      - name: Test report
-        uses: cuspuk/workflow_snakemake_action@v1.25.1
-        with:
-          directory: .tests
-          snakefile: workflow/Snakefile
-          args: "--report report.zip"
+          args: "--use-conda --show-failed-logs --cores 1 --conda-cleanup-pkgs cache --latency-wait 15 "
           show-disk-usage-on-error: true
