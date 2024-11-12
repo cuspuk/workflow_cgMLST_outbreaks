@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.6.0](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.5.0...v1.6.0) (2024-11-12)
+
+
+### Features
+
+* added logging of samples used per each taxa ([8406c57](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/8406c574a2ec943637dd9552457780a3d9eb389b))
+
+
+### Bug Fixes
+
+* newick env ([1da4877](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/1da4877c23708c0259f73b99a801213e1499852c))
+
 ## [1.5.0](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.4.2...v1.5.0) (2024-11-11)
 
 
