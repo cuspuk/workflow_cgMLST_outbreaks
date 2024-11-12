@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.6.1](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.6.0...v1.6.1) (2024-11-12)
+
+
+### Bug Fixes
+
+* moved samples ini into metadata dir ([a286fba](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/a286fba5d6557dd6eb98daaca8cd9dc680015da0))
+* moved samples under cgmlst dir ([362bdea](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/362bdea213b4ac42298ef7512b922bff414631e7))
+
+
+### Performance Improvements
+
+* marked dump sampling as localrule ([951cb3f](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/951cb3fa2af4315acf97759597585305200a49da))
+
 ## [1.6.0](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.5.0...v1.6.0) (2024-11-12)
 
 
