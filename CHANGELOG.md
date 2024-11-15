@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.2](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.6.1...v1.6.2) (2024-11-15)
+
+
+### Bug Fixes
+
+* case when samples less than 2 ([e164936](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/e164936f7e8ee8cb3cb0ec2c30aa5168db4a05ab))
+
 ## [1.6.1](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.6.0...v1.6.1) (2024-11-12)
 
 
