@@ -128,19 +128,30 @@ def infer_url_for_schema_download(wildcards):
 
 
 def get_outputs():
+    taxa_labels = get_valid_taxa_labels()
     if config.get("without_cgmlst_dist", False):
         outs = {
-            "cgmlst": expand(
-                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv", taxa_label=get_valid_taxa_labels()
-            ),
+            "cgmlst": expand("results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv", taxa_label=taxa_labels),
         }
     else:
+        taxa_labels_with_enough_samples = []
+        taxa_labels_with_not_enough_samples = []
+        for label in taxa_labels:
+            if len(get_sample_names_for_taxa_label(label)) > 2:
+                taxa_labels_with_enough_samples.append(label)
+            else:
+                taxa_labels_with_not_enough_samples.append(label)
         outs = {
             "distances": expand(
-                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_tree.newick", taxa_label=get_valid_taxa_labels()
+                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_tree.newick",
+                taxa_label=taxa_labels_with_enough_samples,
+            ),
+            "cgmlst": expand(
+                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv",
+                taxa_label=taxa_labels_with_not_enough_samples,
             ),
         }
-    samples = {"samples": expand("results/_metadata/{taxa_label}.ini", taxa_label=get_valid_taxa_labels())}
+    samples = {"samples": expand("results/_metadata/{taxa_label}.ini", taxa_label=taxa_labels)}
     return {**outs, **samples}
 
 
