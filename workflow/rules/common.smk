@@ -148,7 +148,7 @@ def get_outputs():
             ),
             "cgmlst": expand(
                 "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv",
-                taxa_label=taxa_labels_with_enough_samples,
+                taxa_label=taxa_labels_with_not_enough_samples,
             ),
         }
     samples = {"samples": expand("results/_metadata/{taxa_label}.ini", taxa_label=taxa_labels)}
