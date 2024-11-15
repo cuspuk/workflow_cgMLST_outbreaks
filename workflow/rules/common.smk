@@ -136,7 +136,7 @@ def get_outputs():
     else:
         taxa_labels_with_enough_samples = []
         for label in taxa_labels:
-            if len(get_sample_names_for_taxa_label(label)) >= 2:
+            if len(get_sample_names_for_taxa_label(label)) > 2:
                 taxa_labels_with_enough_samples.append(label)
         outs = {
             "distances": expand(
