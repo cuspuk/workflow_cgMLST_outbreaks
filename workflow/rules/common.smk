@@ -135,12 +135,19 @@ def get_outputs():
         }
     else:
         taxa_labels_with_enough_samples = []
+        taxa_labels_with_not_enough_samples = []
         for label in taxa_labels:
             if len(get_sample_names_for_taxa_label(label)) > 2:
                 taxa_labels_with_enough_samples.append(label)
+            else:
+                taxa_labels_with_not_enough_samples.append(label)
         outs = {
             "distances": expand(
                 "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_tree.newick",
+                taxa_label=taxa_labels_with_enough_samples,
+            ),
+            "cgmlst": expand(
+                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv",
                 taxa_label=taxa_labels_with_enough_samples,
             ),
         }
