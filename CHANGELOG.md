@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.6.3](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.6.2...v1.6.3) (2025-03-21)
+
+
+### Bug Fixes
+
+* added neisseria into config ([cc8d9a8](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/cc8d9a8dae8e2a7c18b4dab730f3d56893aa82d2))
+* added neisseria into config ([13f05b6](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/13f05b664b6d13bb31ee27455ed1e35237bf797a))
+
 ## [1.6.2](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.6.1...v1.6.2) (2024-11-15)
 
 
