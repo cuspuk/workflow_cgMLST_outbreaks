@@ -14,6 +14,14 @@ organism_schemas_mapping:
     training_file_download_url: "https://github.com/B-UMMI/chewBBACA/raw/v3.3.8/CHEWBBACA/prodigal_training_files/Klebsiella_pneumoniae.trn"
     # If the file does not exist and valid URL is provided, it will be downloaded. Else file must be provided or error will be raised.
 
+  - taxa_label: "nmeningitidis"
+    GTDBtk_taxa:
+      - "Neisseria meningitidis"
+    cgMLST_schema_dir: "/data/genome/others/cgmlst_schemas/custom/nmeningitidis_cgMLSTv3_20250319"
+    cgMLST_schema_download_url: null # files created manually
+    training_file_full_path: "/data/genome/others/cgmlst_schemas/training_files/Neisseria_meningitidis_NCTC10025.trn"
+    training_file_download_url: null # file provided manually
+
   - taxa_label: "bordetella"
     GTDBtk_taxa:
       - "Bordetella pertussis"
