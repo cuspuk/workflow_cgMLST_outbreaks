@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.0](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.6.3...v1.7.0) (2025-10-30)
+
+
+### Features
+
+* added grapetree newick ([1d3a2c1](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/1d3a2c1b9efec22afce4f89f837fc9248332310a))
+* added grapetree newick ([ebf4b12](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/ebf4b12c263fb90fb610b05bdca7ee4c9b4b06c7))
+
 ## [1.6.3](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.6.2...v1.6.3) (2025-03-21)
 
 
