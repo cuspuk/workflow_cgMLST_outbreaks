@@ -146,6 +146,10 @@ def get_outputs():
                 "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_tree.newick",
                 taxa_label=taxa_labels_with_enough_samples,
             ),
+            "grapetree": expand(
+                "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_grapetree.nwk",
+                taxa_label=taxa_labels_with_enough_samples,
+            ),
             "cgmlst": expand(
                 "results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv",
                 taxa_label=taxa_labels_with_not_enough_samples,
@@ -153,16 +157,3 @@ def get_outputs():
         }
     samples = {"samples": expand("results/_metadata/{taxa_label}.ini", taxa_label=taxa_labels)}
     return {**outs, **samples}
-
-
-### Contract for other workflows ######################################################################################
-
-
-### Parameter parsing from config #####################################################################################
-
-
-### Resource handling #################################################################################################
-
-
-def get_mem_mb_for_XY(wildcards, attempt):
-    return min(config["max_mem_mb"], config["resources"]["XY_mem_mb"] * attempt)

@@ -97,3 +97,16 @@ rule newick_tree:
         "logs/cgMLST_distances/{taxa_label}_tree.log",
     script:
         "../scripts/newick.R"
+
+
+rule grapetree_mst_newick:
+    input:
+        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_cleaned.tsv",
+    output:
+        nwk="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_grapetree.nwk",
+    conda:
+        "../envs/grapetree.yaml"
+    log:
+        "logs/cgMLST_distances/{taxa_label}_grapetree.log",
+    shell:
+        "grapetree -p {input.tsv} > {output.nwk} 2> {log}"
