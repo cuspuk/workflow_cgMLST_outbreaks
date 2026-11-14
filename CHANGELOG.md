@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.8.0](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.7.0...v1.8.0) (2026-11-14)
+
+
+### Features
+
+* sample name special chars ([b91c53c](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/b91c53c357d6cd1f45bc183bee2197665fe30fd0))
+* sanitizing input names ([5cb786b](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/5cb786bb1b401731a5b99eaaf92a167ecbf9e588))
+
 ## [1.7.0](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.6.3...v1.7.0) (2025-10-30)
 
 
