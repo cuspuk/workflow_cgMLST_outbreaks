@@ -64,6 +64,7 @@ rule chewbacca_cleanup_names:
         tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_cleaned.tsv",
     params:
         suffix="_cleaned",
+        replacement_map=lambda wildcards: {"__DOT__": ".", "__SLS__": "/"},
     localrule: True
     conda:
         "../envs/python.yaml"
