@@ -2,12 +2,12 @@ rule preprocess_assembly_for_chewbacca:
     input:
         assembly=infer_assembly_fasta,
     output:
-        assembly=temp("results/assembly/cleaned/{sample}_cleaned.fasta"),
+        assembly=temp("results/assembly/cleaned/{sanitized_sample}_cleaned.fasta"),
     conda:
         "../envs/sed.yaml"
     localrule: True
     log:
-        "logs/preprocess_assembly_for_chewbacca/{sample}.log",
+        "logs/preprocess_assembly_for_chewbacca/{sanitized_sample}.log",
     shell:
         "sed 's/=/_/g' {input:q} > {output:q} 2> {log}"
 
@@ -32,7 +32,7 @@ rule dump_samples:
     output:
         "results/_metadata/{taxa_label}.ini",
     params:
-        samples=lambda wildcards: "\n".join(get_sample_names_for_taxa_label(wildcards.taxa_label)),
+        samples=lambda wildcards: "\n".join(get_unsanitized_sample_names_for_taxa_label(wildcards.taxa_label)),
     localrule: True
     conda:
         "../envs/coreutils.yaml"

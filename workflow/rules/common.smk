@@ -73,20 +73,34 @@ def get_mapping_for_taxa_label(taxa_label: str) -> SchemaMapping:
     return next(mapping for mapping in MAPPINGS if mapping.taxa_label == taxa_label)
 
 
-def get_sample_names_for_taxa_label(taxa_label: str) -> list[str]:
+def get_sanitized_sample_names_for_taxa_label(taxa_label: str) -> list[str]:
+    unsanitized = get_unsanitized_sample_names_for_taxa_label(taxa_label)
+    return [sanitize_sample_name(x) for x in unsanitized]
+
+
+def get_unsanitized_sample_names_for_taxa_label(taxa_label: str) -> list[str]:
     mapping = get_mapping_for_taxa_label(taxa_label)
     return list(pep.sample_table[pep.sample_table["GTDBtk_taxa"].isin(mapping.GTDBtk_taxa)]["sample_name"].values)
 
 
 def get_valid_taxa_labels():
-    return [mapping.taxa_label for mapping in MAPPINGS if get_sample_names_for_taxa_label(mapping.taxa_label)]
+    return [mapping.taxa_label for mapping in MAPPINGS if get_sanitized_sample_names_for_taxa_label(mapping.taxa_label)]
+
+
+def sanitize_sample_name(sample: str) -> str:
+    return sample.replace(".", "__DOT__").replace("/", "__SLS__")
+
+
+def unsanitize_sample_name(sample: str) -> str:
+    return sample.replace("__DOT__", ".").replace("__SLS__", "/")
 
 
 ### Global rule-set stuff #############################################################################################
 
 
 def infer_assembly_fasta(wildcards) -> str:
-    return get_fasta_for_sample_from_pep(wildcards.sample)
+    name = unsanitize_sample_name(wildcards.sanitized_sample)
+    return get_fasta_for_sample_from_pep(name)
 
 
 def infer_chewbacca_schema_for_taxa_label(wildcards) -> str:
@@ -103,7 +117,8 @@ def infer_cgMLST_schema_dir_for_taxa_label(wildcards) -> str:
 
 def infer_cleaned_assemblies_for_taxa_label(wildcards):
     return expand(
-        "results/assembly/cleaned/{sample}_cleaned.fasta", sample=get_sample_names_for_taxa_label(wildcards.taxa_label)
+        "results/assembly/cleaned/{sanitized_sample}_cleaned.fasta",
+        sanitized_sample=get_sanitized_sample_names_for_taxa_label(wildcards.taxa_label),
     )
 
 
@@ -137,7 +152,7 @@ def get_outputs():
         taxa_labels_with_enough_samples = []
         taxa_labels_with_not_enough_samples = []
         for label in taxa_labels:
-            if len(get_sample_names_for_taxa_label(label)) > 2:
+            if len(get_sanitized_sample_names_for_taxa_label(label)) > 2:
                 taxa_labels_with_enough_samples.append(label)
             else:
                 taxa_labels_with_not_enough_samples.append(label)
