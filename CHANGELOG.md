@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.8.1](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.8.0...v1.8.1) (2026-11-23)
+
+
+### Bug Fixes
+
+* fix long names ([92c5336](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/92c53364b4ae59ddef33d91b2b83b5ba5e1d2408))
+* shorten cleaned suffix to clean ([04815e1](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/04815e1676eeb8d9ac4432f25cb8afc1d3abc48e))
+* shorten replacement uniq chars ([ed9ff0b](https://github.com/cuspuk/workflow_cgMLST_outbreaks/commit/ed9ff0be5c5f7d46950bf658d73ab518659b963d))
+
 ## [1.8.0](https://github.com/cuspuk/workflow_cgMLST_outbreaks/compare/v1.7.0...v1.8.0) (2026-11-14)
 
 
