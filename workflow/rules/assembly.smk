@@ -2,7 +2,7 @@ rule preprocess_assembly_for_chewbacca:
     input:
         assembly=infer_assembly_fasta,
     output:
-        assembly=temp("results/assembly/cleaned/{sanitized_sample}_clean.fasta"),
+        assembly=temp("results/assembly/cleaned/{sanitized_sample}_clea.fasta"),
     conda:
         "../envs/sed.yaml"
     localrule: True
@@ -14,7 +14,7 @@ rule preprocess_assembly_for_chewbacca:
 
 rule prepare_assemblies_paths:
     input:
-        assemblies=infer_clean_assemblies_for_taxa_label,
+        assemblies=infer_clea_assemblies_for_taxa_label,
     output:
         assembly="results/assembly/{taxa_label}.infile",
     params:
