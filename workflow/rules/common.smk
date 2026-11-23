@@ -88,11 +88,11 @@ def get_valid_taxa_labels():
 
 
 def sanitize_sample_name(sample: str) -> str:
-    return sample.replace(".", "__DOT__").replace("/", "__SLS__")
+    return sample.replace(".", "---").replace("/", "___")
 
 
 def unsanitize_sample_name(sample: str) -> str:
-    return sample.replace("__DOT__", ".").replace("__SLS__", "/")
+    return sample.replace("---", ".").replace("___", "/")
 
 
 ### Global rule-set stuff #############################################################################################
@@ -115,9 +115,9 @@ def infer_cgMLST_schema_dir_for_taxa_label(wildcards) -> str:
     return get_mapping_for_taxa_label(wildcards.taxa_label).cgMLST_schema_dir
 
 
-def infer_cleaned_assemblies_for_taxa_label(wildcards):
+def infer_clea_assemblies_for_taxa_label(wildcards):
     return expand(
-        "results/assembly/cleaned/{sanitized_sample}_cleaned.fasta",
+        "results/assembly/cleaned/{sanitized_sample}_clea.fasta",
         sanitized_sample=get_sanitized_sample_names_for_taxa_label(wildcards.taxa_label),
     )
 
