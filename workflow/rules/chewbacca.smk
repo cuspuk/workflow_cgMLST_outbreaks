@@ -2,7 +2,7 @@ rule chewbacca_allele_call:
     input:
         schema_dir=infer_chewbacca_schema_for_taxa_label,
         assembly_file="results/assembly/{taxa_label}.infile",
-        assemblies=infer_cleaned_assemblies_for_taxa_label,
+        assemblies=infer_clean_assemblies_for_taxa_label,
     output:
         multiext(
             "results/cgMLST/{taxa_label}/",
@@ -61,10 +61,10 @@ rule chewbacca_cleanup_names:
     input:
         tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95.tsv",
     output:
-        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_cleaned.tsv",
+        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_clean.tsv",
     params:
-        suffix="_cleaned",
         replacement_map=lambda wildcards: {"__DOT__": ".", "__SLS__": "/"},
+        suffix="_clean",
     localrule: True
     conda:
         "../envs/python.yaml"
@@ -76,7 +76,7 @@ rule chewbacca_cleanup_names:
 
 rule cgMLST_distances:
     input:
-        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_cleaned.tsv",
+        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_clean.tsv",
     output:
         tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_distances.tsv",
     conda:
@@ -102,7 +102,7 @@ rule newick_tree:
 
 rule grapetree_mst_newick:
     input:
-        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_cleaned.tsv",
+        tsv="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_clean.tsv",
     output:
         nwk="results/cgMLST/{taxa_label}/extracted_genes/cgMLST95_grapetree.nwk",
     conda:
